@@ -1,3 +1,5 @@
+package com.praqma
+
 class StageGenerator {
     public static String returParameter(String param) {
         return param
