@@ -1,8 +1,8 @@
 package com.praqma
 
 class StageGenerator {
-    static def getStageClosure() {
-        return { stage("hello") { echo 'foobar' } }
+    static def getStageClosure(context) {
+        return context.stage("hello") { echo 'foobar' }
     }
 
     static def echoThis(context) {
