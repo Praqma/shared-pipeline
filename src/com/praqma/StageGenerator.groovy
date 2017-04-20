@@ -1,15 +1,12 @@
 package com.praqma
 
-class StageGenerator {
-    public static String returParameter(String param) {
-        return param
-    }
+class StageGenerator implements Serializable {
 
-    public static String getStage() {
+    static def getStage() {
         return "stage('my-stage') { echo 'helloooooeee' } "
     }
 
-    public static Closure getStageAsClosure() {
-        return { stage("hahah") { echo 'hello' } }
+    static def Closure getStageAsClosure() {
+        return { stage("hahah") { steps { echo 'hello' } } }
     }
 }
