@@ -15,8 +15,7 @@ It is a stage wrapper that will be executed as a usual stage when triggered by w
 library identifier: 'praqma-shared@master', retriever: modernSCM(
   [$class: 'GitSCMSource',
    remote: 'https://github.com/Praqma/shared-pipeline.git',
-   credentialsId: ''],
-   changelog: false)
+   credentialsId: ''])
 
 stageWithCheckPoint(" ") {
     echo "User decided to run me"
