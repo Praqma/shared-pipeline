@@ -17,7 +17,7 @@ library identifier: 'praqma-shared@master', retriever: modernSCM(
    remote: 'https://github.com/Praqma/shared-pipeline.git',
    credentialsId: ''])
 
-stageWithCheckPoint(" ") {
+stageWithCheckPoint("ConditionalEcho") {
     echo "User decided to run me"
 }
 ```
