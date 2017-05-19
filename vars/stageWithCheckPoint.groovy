@@ -9,8 +9,8 @@ def call(stageName, tOut=5, closure) {
            userId = cause.getUserId()
        }
        // User pressed retrigger button
-       if (isClassExists("com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.GerritUserCause")) {
-           if (cause instanceof com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.GerritUserCause) {
+       if (isClassExists("com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.GerritUserCause") == true) {
+           if (Class.forName("com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.GerritUserCause").isInstance(cause)) {
                isTriggeredByUser = true
                userId = cause.getUserName()
            }
@@ -38,6 +38,9 @@ def call(stageName, tOut=5, closure) {
 def isClassExists(def classPath) {
     try {
         classname = Class.forName(classPath)
+        if (classname == null) {
+            return false
+        }
         return true
     } catch (ClassNotFoundException e) {
         return false
