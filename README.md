@@ -39,7 +39,7 @@ Command that releases a plugin to the target configured in the distribution mana
 #### Arguments.releaseMaven
 
 - `buildImage` The image to use in the sidecar. [Default: maven:3.5.3-jdk-8]
-- `credentials` The credential id to use. We require that a username/password credential is used
+- `credentials` The credential id to use. We require that a username/password credential is used. [Default: 'github']
 
 
 ### stageWithCheckPoint
