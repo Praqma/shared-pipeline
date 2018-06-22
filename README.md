@@ -23,7 +23,7 @@ docker.image(inputs.buildImage ?: "maven:3.5.3-jdk-8").inside("-v maven-repo:/ro
 Arguments are passed in as named arguments. So for instance call it like so: `buildMaven(buildCommand: '...', buildImage: '...')`
 
 - `buildCommand` The maven command to use. [Default: 'mvn clean package']
-- `buildImage` The image to use in the sidecar. [Default: maven:3.5.3-jdk-8]
+- `buildImage` The image to use in the sidecar. [Default: 'maven:3.5.3-jdk-8']
 
 ### releaseMaven
 
@@ -43,7 +43,7 @@ Command that releases a plugin to the target configured in the distribution mana
 
 Arguments are passed in as named arguments. So for instance call it like so: `releaseMaven(credentials: '...', buildImage: '...')`
 
-- `buildImage` The image to use in the sidecar. [Default: maven:3.5.3-jdk-8]
+- `buildImage` The image to use in the sidecar. [Default: 'maven:3.5.3-jdk-8']
 - `credentials` The credential id to use. We require that a username/password credential is used. [Default: 'github']
 
 
@@ -61,6 +61,10 @@ stageWithCheckPoint("ConditionalEcho") {
     echo "User decided to run me"
 }
 ```
+
+### pac
+
+#### Arguments.pac
 
 #### Stage wrappers and declarative pipeline
 
