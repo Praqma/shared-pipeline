@@ -1,6 +1,6 @@
 def call(args = [:]) {
     def curDir = pwd()
-    def minFile = "${curDir}/minimal_settings.yml"
+    def minFile = "minimal_settings.yml"
     def latestTag = args.latestTag ?: "*"
     def settingsFile = args.settingsFile ?: minFile
     def pacArgs = args.pacArgs ?: ""
