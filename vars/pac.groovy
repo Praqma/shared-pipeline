@@ -5,12 +5,10 @@ def call(args = [:]) {
     def settingsFile = args.settingsFile ?: minFile
     def pacArgs = args.pacArgs ?: ""
 
-    if(!args.settingsFile) {
-        echo "Writing minimal settings file..."
-        new File(curDir, minFile) << new URL("https://raw.githubusercontent.com/Praqma/Praqmatic-Automated-Changelog/master/settings/minimal_settings.yml").getText()
-        echo "Done writing minimal settings file..."
-    }          
-    docker.image("praqma/pac").inside() {
-        sh "from-latest-tag \"$latestTag\" --settings=$settingsFile $pacArgs"
+    docker.image("praqma/pac:3.0.0-12").inside() {
+        if(!args.settingsFile) {
+            sh "curl 'https://raw.githubusercontent.com/Praqma/Praqmatic-Automated-Changelog/master/settings/minimal_settings.yml -O'"
+        }
+        sh "pac from-latest-tag \"*\" --settings=$settingsFile $pacArgs -v"
     }
 }
