@@ -64,7 +64,36 @@ stageWithCheckPoint("ConditionalEcho") {
 
 ### pac
 
+Runs PAC against current repository. We always use the `from-latest-tag <glob_pattern>` format.
+
+So by default we run: `pac from-latest-tag "*" --settings=settings_minmal.yml`. This will find commits from HEAD to latest tag of any kind using the official minimum settings file from the PAC repository, by default we assume github styled issues with `(hashtag) #` as task identifier.
+
+By default this step will also archive the created changelog.
+
+```groovy
+def call(args = [:]) {
+    def curDir = pwd()
+    def minFile = "minimal_settings.yml"
+    def latestTag = args.latestTag ?: "*"
+    def settingsFile = args.settingsFile ?: minFile
+    def pacArgs = args.pacArgs ?: ""
+
+    docker.image("praqma/pac:3.0.0-12").inside() {
+        if(!args.settingsFile) {
+            sh "curl https://raw.githubusercontent.com/Praqma/Praqmatic-Automated-Changelog/master/settings/minimal_settings.yml -O"
+        }
+        sh "pac from-latest-tag \"$latestTag\" --settings=$settingsFile $pacArgs -v"
+        if(!args.settingsFile) {
+            archiveArtifacts 'default.html'
+        }
+    }
+}
+```
+
 #### Arguments.pac
+
+- `settingsFile` Relative path to the settings file to use. [Default: "minimal_settings.yml"]
+- `latestTag` Latest glob pattern to search for tags. [Default: "*"]
 
 #### Stage wrappers and declarative pipeline
 
