@@ -92,7 +92,7 @@ def call(args = [:]) {
 
 #### Arguments.pac
 
-Default use is `pac()` can be augmented with `pac(settingsFile: '...', latestTag: '...')
+Default use is `pac()` can be augmented with `pac(settingsFile: '...', latestTag: '...')`
 
 - `settingsFile` Relative path to the settings file to use. [Default: "minimal_settings.yml"]
 - `latestTag` Latest glob pattern to search for tags. [Default: "*"]
