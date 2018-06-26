@@ -7,8 +7,11 @@ def call(args = [:]) {
 
     docker.image("praqma/pac:3.0.0-12").inside() {
         if(!args.settingsFile) {
-            sh "curl 'https://raw.githubusercontent.com/Praqma/Praqmatic-Automated-Changelog/master/settings/minimal_settings.yml -O'"
+            sh "curl https://raw.githubusercontent.com/Praqma/Praqmatic-Automated-Changelog/master/settings/minimal_settings.yml -O"
         }
-        sh "pac from-latest-tag \"*\" --settings=$settingsFile $pacArgs -v"
+        sh "pac from-latest-tag \"$latestTag\" --settings=$settingsFile $pacArgs -v"
+        if(!args.settingsFile) {
+            archiveArtifacts 'default.html'
+        }
     }
 }
